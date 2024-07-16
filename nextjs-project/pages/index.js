@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import MeetupList from "../components/meetups/MeetupList";
-const DUMMY_MEETUPS = [
+export const DUMMY_MEETUPS = [
   {
     id: "m1",
     title: "first meetup",
@@ -19,12 +19,21 @@ const DUMMY_MEETUPS = [
   },
 ];
 
-const HomePage = () => {
+const HomePage = (props) => {
+  console.log(props);
   return (
-    <Fragment>
-      <MeetupList meetups={DUMMY_MEETUPS} />
-    </Fragment>
+    <>
+      <MeetupList meetups={props.meetups} />
+    </>
   );
 };
+
+export function getStaticProps() {
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS,
+    },
+  };
+}
 
 export default HomePage;
